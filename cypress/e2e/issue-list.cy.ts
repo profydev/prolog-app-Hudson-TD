@@ -82,5 +82,31 @@ describe("Issue List", () => {
       cy.wait(1500);
       cy.contains("Page 2 of 3");
     });
+
+    it.only("reflects correct values in Users column", () => {
+      // Verify page 1 Users column values
+      cy.contains("Page 1 of 3");
+      cy.get("main")
+        .find("tbody")
+        .find("tr")
+        .each(($el, index) => {
+          const issue = mockIssues1.items[index];
+          cy.wrap($el).contains(issue.numUsers);
+        });
+
+      // Navigate to page 2
+      cy.get("@next-button").click();
+      // Buffer for page loading
+      cy.wait(3000);
+      cy.contains("Page 2 of 3");
+      // Verify page 2 Users column values
+      cy.get("main")
+        .find("tbody")
+        .find("tr")
+        .each(($el, index) => {
+          const issue = mockIssues2.items[index];
+          cy.wrap($el).contains(issue.numUsers);
+        });
+    });
   });
 });
