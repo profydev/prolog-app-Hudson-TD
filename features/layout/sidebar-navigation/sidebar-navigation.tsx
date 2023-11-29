@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Routes } from "@config/routes";
 import classNames from "classnames";
 import { NavigationContext } from "./navigation-context";
@@ -20,6 +20,20 @@ export function SidebarNavigation() {
   const router = useRouter();
   const { isSidebarCollapsed, toggleSidebar } = useContext(NavigationContext);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [viewportWidth, setViewportWidth] = useState(0);
+
+  useEffect(() => {
+    const handleViewportUpdate = () => {
+      const newViewport = window.innerWidth;
+      setViewportWidth(newViewport);
+    };
+    // Set initial viewport width
+    handleViewportUpdate();
+    window.addEventListener("resize", handleViewportUpdate);
+    // Cleanup eventlistener on unmount
+    return () => window.removeEventListener("resize", handleViewportUpdate);
+  });
+
   return (
     <div
       className={classNames(
@@ -37,7 +51,7 @@ export function SidebarNavigation() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={
-              isSidebarCollapsed
+              isSidebarCollapsed && viewportWidth >= 1024 // $desktop breakpoint in px
                 ? "/icons/logo-small.svg"
                 : "/icons/logo-large.svg"
             }
