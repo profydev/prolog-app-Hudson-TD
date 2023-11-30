@@ -1,0 +1,45 @@
+@use "@styles/color";
+@use "@styles/font";
+
+.errorContainer {
+  background-color: color.$error-25;
+  border: 1px solid color.$error-300;
+  border-radius: 8px;
+  max-width: 100%;
+  margin-top: 32px;
+}
+
+.errorContent {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 0 12px;
+}
+
+.errorMsgContainer {
+  flex-grow: 2;
+  line-height: 20px;
+  width: 100%;
+}
+
+.errorButtonContainer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.errorText {
+  color: color.$error-700;
+  font: font.$text-sm-medium;
+}
+
+.errorButton {
+  white-space: nowrap;
+  border: none;
+  background-color: color.$error-25;
+}
+
+.errorButtonContainer:hover {
+  color: color.$gray-900;
+}

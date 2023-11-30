@@ -42,3 +42,37 @@ describe("Project List", () => {
     });
   });
 });
+
+describe.only("Project List Fetching Error", () => {
+  beforeEach(() => {
+    // Intercept API call to trigger error alter component render
+    cy.intercept("GET", "https://prolog-api.profy.dev/project", {
+      statusCode: 500,
+      body: "Expected error message text",
+    }).as("getError");
+
+    // Open `Projects` page
+    cy.visit("http://localhost:3000/dashboard");
+  });
+
+  context("desktop resolution", () => {
+    beforeEach(() => {
+      cy.viewport(1025, 900);
+    });
+
+    it("Correctly renders error alert component", () => {
+      // Buffer to allow component render
+      cy.wait(9000);
+      cy.get("main").contains("Request failed with status code 500");
+    });
+
+    it("Handles refetch when Try Again button is clicked", () => {
+      // Buffer to allow component render
+      cy.wait(9000);
+      cy.get("main").contains("button", "Try again").click();
+      // Second attempt buffer
+      cy.wait(9000);
+      cy.get("main").contains("Request failed with status code 500");
+    });
+  });
+});
