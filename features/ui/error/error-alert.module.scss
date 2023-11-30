@@ -5,7 +5,7 @@
   background-color: color.$error-25;
   border: 1px solid color.$error-300;
   border-radius: 8px;
-  width: 100%;
+  max-width: 100%;
   margin-top: 32px;
 }
 
@@ -13,13 +13,13 @@
   display: flex;
   gap: 12px;
   align-items: center;
-  height: 20px;
-  padding: 16px;
+  margin: 0 12px;
 }
 
-.errorText {
-  color: color.$error-700;
-  font: font.$text-sm-semibold;
+.errorMsgContainer {
+  flex-grow: 2;
+  line-height: 20px;
+  width: 100%;
 }
 
 .errorButtonContainer {
@@ -29,8 +29,17 @@
   margin-left: auto;
 }
 
+.errorText {
+  color: color.$error-700;
+  font: font.$text-sm-medium;
+}
+
 .errorButton {
-  padding: 0;
+  white-space: nowrap;
   border: none;
   background-color: color.$error-25;
+}
+
+.errorButtonContainer:hover {
+  color: color.$gray-900;
 }

@@ -3,7 +3,7 @@ import { useGetProjects } from "../../api/use-get-projects";
 import { ErrorAlert } from "../../../ui/error/error-alert";
 import styles from "./project-list.module.scss";
 export function ProjectList() {
-  const { data, isLoading, isError, error } = useGetProjects();
+  const { data, isLoading, isError, error, refetch } = useGetProjects();
 
   if (isLoading) {
     return <div>Loading</div>;
@@ -11,7 +11,7 @@ export function ProjectList() {
 
   if (isError) {
     console.error(error);
-    return <ErrorAlert errorData={error} />;
+    return <ErrorAlert errorData={error} handleRefetch={() => refetch()} />;
   }
 
   return (
