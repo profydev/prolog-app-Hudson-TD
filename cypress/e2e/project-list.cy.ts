@@ -43,7 +43,7 @@ describe("Project List", () => {
   });
 });
 
-describe.only("Project List Fetching Error", () => {
+describe.only("Project List Loading & Error Behavior", () => {
   beforeEach(() => {
     // Intercept API call to trigger error alter component render
     cy.intercept("GET", "https://prolog-api.profy.dev/project", {
@@ -58,6 +58,10 @@ describe.only("Project List Fetching Error", () => {
   context("desktop resolution", () => {
     beforeEach(() => {
       cy.viewport(1025, 900);
+    });
+
+    it.only("Renders spinner element", () => {
+      cy.get("#spinner").should("exist").should("have.descendants", "svg");
     });
 
     it("Correctly renders error alert component", () => {
