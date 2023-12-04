@@ -1,12 +1,13 @@
 import { ProjectCard } from "../project-card";
 import { useGetProjects } from "../../api/use-get-projects";
-import { ErrorAlert } from "../../../ui/error/error-alert";
+import { ErrorAlert } from "@features/ui";
+import { Spinner } from "@features/ui";
 import styles from "./project-list.module.scss";
 export function ProjectList() {
   const { data, isLoading, isError, error, refetch } = useGetProjects();
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return <Spinner />;
   }
 
   if (isError) {
