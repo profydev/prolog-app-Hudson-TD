@@ -60,7 +60,7 @@ describe.only("Project List Loading & Error Behavior", () => {
       cy.viewport(1025, 900);
     });
 
-    it.only("Renders spinner element", () => {
+    it("Renders spinner element", () => {
       cy.get("#spinner").should("exist").should("have.descendants", "svg");
     });
 
