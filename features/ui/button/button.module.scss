@@ -50,6 +50,7 @@
 
   &.primary:disabled {
     background-color: color.$primary-200;
+    border-color: color.$primary-200;
     color: #fff;
   }
 
@@ -94,13 +95,14 @@
   }
 
   &.gray:disabled {
-    background-color: color.$gray-300;
-    color: color.$gray-700;
+    background-color: #fff;
+    border-color: color.$gray-200;
+    color: color.$gray-300;
   }
 
   &.empty {
     background-color: none;
-    border: none;
+    border-color: transparent;
     color: color.$primary-700;
   }
 
@@ -121,7 +123,7 @@
 
   &.emptyGray {
     background-color: none;
-    border: none;
+    border-color: transparent;
     color: color.$gray-500;
   }
 
@@ -160,7 +162,8 @@
   }
 
   &.error:disabled {
-    background-color: color.$error-600;
+    background-color: color.$error-200;
+    border-color: color.$error-200;
     color: #fff;
   }
 }
