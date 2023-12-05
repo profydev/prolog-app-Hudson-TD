@@ -11,21 +11,27 @@
 
   @media (min-width: breakpoint.$desktop) {
     flex-direction: row;
+    height: misc.$footer-height-desktop;
   }
 }
 
+.mainContentFormat,
 .main {
   flex: 1;
 }
 
 .contentContainer {
-  min-height: calc(100vh - 2 * space.$s8 - misc.$header-height);
+  min-height: calc(
+    100vh - 2 * space.$s8 - misc.$header-height - misc.$footer-height-mobile
+  );
   margin-top: misc.$header-height;
   padding: space.$s8 space.$s3;
   background: white;
 
   @media (min-width: breakpoint.$desktop) {
-    min-height: calc(100vh - space.$s3 - 2 * space.$s8);
+    min-height: calc(
+      100vh - space.$s2 - misc.$header-height - misc.$footer-height-desktop
+    );
     margin-top: space.$s3;
     padding: space.$s8;
     border-top-left-radius: space.$s10;

@@ -1,0 +1,83 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+@use "@styles/breakpoint";
+@use "@styles/misc";
+
+.footer {
+  background-color: color.$gray-50;
+  height: misc.$footer-height-mobile;
+  padding: space.$s3;
+
+  @media (min-width: breakpoint.$desktop) {
+    height: misc.$footer-height-desktop;
+    padding: 0 space.$s8;
+  }
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+  @media (min-width: breakpoint.$desktop) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.version {
+  color: color.$gray-400;
+  font: font.$text-md-regular;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+
+  @media (min-width: breakpoint.$desktop) {
+    order: 0;
+  }
+}
+
+.directory {
+  display: flex;
+  gap: space.$s6;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @media (min-width: breakpoint.$desktop) {
+    order: 1;
+  }
+}
+
+.directoryLink {
+  text-decoration: none;
+  color: color.$gray-500;
+  font: font.$text-md-medium;
+}
+
+.versionContainer,
+.logoContainer {
+  width: 10rem;
+}
+
+.logoContainer {
+  text-align: center;
+  padding: space.$s6 0;
+
+  @media (min-width: breakpoint.$desktop) {
+    order: 2;
+    text-align: right;
+    padding: 0;
+  }
+}
