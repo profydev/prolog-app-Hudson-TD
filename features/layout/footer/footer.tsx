@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <div className={styles.contentContainer}>
+        <div className={styles.contentContainer} id="footerContent">
           <ul className={styles.directory}>
             <Link className={styles.directoryLink} href="#">
               Docs
@@ -24,10 +24,12 @@ export function Footer() {
           </ul>
           <div className={styles.logoContainer}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/icons/logo-small.svg" alt="logo" />
+            <img src="/icons/logo-small.svg" alt="logo" id="footerLogo" />
           </div>
           <div className={styles.versionContainer}>
-            <p className={styles.version}>Version: {appBuild}</p>
+            <p className={styles.version} id="appBuild">
+              Version: {appBuild}
+            </p>
           </div>
         </div>
       </div>
