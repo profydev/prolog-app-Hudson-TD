@@ -1,10 +1,14 @@
+@use "@styles/color";
+
 .button {
   cursor: pointer;
-
-  /* remove default button styles */
-  border: none;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  border: 1px solid;
+  border-radius: 0.5rem;
   margin: 0;
-  padding: 0;
+  padding: 0.6rem 1rem;
   background: transparent;
   line-height: normal;
   -webkit-font-smoothing: inherit;
@@ -14,5 +18,149 @@
   &::-moz-focus-inner {
     border: 0;
     padding: 0;
+  }
+
+  // Implemented to retain li styling for the "Collapse" navigation button
+  &.default {
+    background-color: none;
+    outline: none;
+    border: none;
+    color: color.$gray-100;
+    padding: 0;
+    margin: 0;
+  }
+
+  &.primary {
+    background-color: color.$primary-600;
+    border-color: color.$primary-600;
+    color: #fff;
+  }
+
+  &.primary:hover {
+    background-color: color.$primary-700;
+    color: #fff;
+  }
+
+  &.primary:focus {
+    background-color: color.$primary-600;
+    border-color: color.$primary-600;
+    color: #fff;
+    outline: 0.3rem solid color.$primary-100;
+  }
+
+  &.primary:disabled {
+    background-color: color.$primary-200;
+    color: #fff;
+  }
+
+  &.secondary {
+    background-color: color.$primary-50;
+    border-color: color.$primary-50;
+    color: color.$primary-700;
+  }
+
+  &.secondary:hover {
+    background-color: color.$primary-100;
+    border-color: color.$primary-100;
+    color: color.$primary-700;
+  }
+
+  &.secondary:focus {
+    background-color: color.$primary-50;
+    color: color.$primary-700;
+    outline: 0.3rem solid color.$primary-100;
+  }
+
+  &.secondary:disabled {
+    background-color: color.$primary-25;
+    color: color.$primary-300;
+  }
+
+  &.gray {
+    background-color: #fff;
+    border-color: color.$gray-300;
+    color: color.$gray-700;
+  }
+
+  &.gray:hover {
+    background-color: color.$gray-50;
+    color: color.$gray-800;
+  }
+
+  &.gray:focus {
+    background-color: #fff;
+    color: color.$gray-700;
+    outline: 0.3rem solid color.$gray-300;
+  }
+
+  &.gray:disabled {
+    background-color: color.$gray-300;
+    color: color.$gray-700;
+  }
+
+  &.empty {
+    background-color: none;
+    border: none;
+    color: color.$primary-700;
+  }
+
+  &.empty:hover {
+    background-color: color.$primary-50;
+    color: color.$primary-700;
+  }
+
+  &.empty:focus {
+    background-color: none;
+    color: color.$primary-700;
+  }
+
+  &.empty:disabled {
+    background-color: none;
+    color: color.$gray-300;
+  }
+
+  &.emptyGray {
+    background-color: none;
+    border: none;
+    color: color.$gray-500;
+  }
+
+  &.emptyGray:hover {
+    background-color: color.$gray-50;
+    color: color.$gray-600;
+  }
+
+  &.emptyGray:focus {
+    background-color: none;
+    color: color.$gray-500;
+  }
+
+  &.emptyGray:disabled {
+    background-color: none;
+    color: color.$gray-300;
+  }
+
+  &.error {
+    background-color: color.$error-600;
+    border-color: color.$error-600;
+    color: #fff;
+  }
+
+  &.error:hover {
+    background-color: color.$error-700;
+    border-color: color.$error-700;
+    color: #fff;
+  }
+
+  &.error:focus {
+    background-color: color.$error-600;
+    border-color: color.$error-600;
+    outline: 0.3rem solid color.$error-100;
+    color: #fff;
+  }
+
+  &.error:disabled {
+    background-color: color.$error-600;
+    color: #fff;
   }
 }
