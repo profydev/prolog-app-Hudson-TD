@@ -1,4 +1,6 @@
 @use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
 
 .button {
   cursor: pointer;
@@ -18,6 +20,30 @@
   &::-moz-focus-inner {
     border: 0;
     padding: 0;
+  }
+
+  &.sm {
+    padding: space.$s2 0.875rem;
+    height: space.$s8;
+    font: font.$text-sm-medium;
+  }
+
+  &.md {
+    padding: 0.625rem space.$s4;
+    height: space.$s10;
+    font: font.$text-sm-medium;
+  }
+
+  &.lg {
+    padding: 0.625rem 1.125rem;
+    height: space.$s11;
+    font: font.$text-md-medium;
+  }
+
+  &.xl {
+    padding: space.$s3 space.$s5;
+    height: space.$s12;
+    font: font.$text-md-medium;
   }
 
   // Implemented to retain li styling for the "Collapse" navigation button
