@@ -1,8 +1,9 @@
 import styles from "./footer.module.scss";
-import packageJSON from "../../../package.json";
+import { version } from "../../../package.json";
 import Link from "next/link";
 
 export function Footer() {
+  const appBuild = version;
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -26,7 +27,7 @@ export function Footer() {
             <img src="/icons/logo-small.svg" alt="logo" />
           </div>
           <div className={styles.versionContainer}>
-            <p className={styles.version}>Version: {packageJSON.version}</p>
+            <p className={styles.version}>Version: {appBuild}</p>
           </div>
         </div>
       </div>
