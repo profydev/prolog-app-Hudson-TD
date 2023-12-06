@@ -2,4 +2,8 @@
   // Test styling to ensure communication with module file -- will be updated
   border-color: red;
   color: black;
+
+  &.sm {
+    size: 12px;
+  }
 }

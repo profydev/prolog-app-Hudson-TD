@@ -7,27 +7,29 @@ export enum CheckboxSize {
 }
 
 type CheckboxProps = {
-  children: React.ReactNode;
+  value: string;
   size?: CheckboxSize;
   onChange: () => void;
   isDisabled?: boolean;
 };
 
 export function Checkbox({
-  children,
+  value,
   size = CheckboxSize.sm,
   onChange,
   isDisabled = false,
 }: CheckboxProps) {
   return (
-    <input
-      type="checkbox"
-      className={classNames(styles[size])}
-      onChange={onChange}
-      disabled={isDisabled}
-    >
-      {children}
-    </input>
+    <div>
+      <input
+        id={value}
+        type="checkbox"
+        className={classNames(styles.checkbox, styles[size])}
+        onChange={onChange}
+        disabled={isDisabled}
+      />
+      <label htmlFor={value}>{value}</label>
+    </div>
   );
 }
 
