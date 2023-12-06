@@ -11,19 +11,28 @@ export default {
   },
 } as Meta<typeof Checkbox>;
 
-const Template: StoryFn<typeof Checkbox> = ({
-  size,
-  value,
-  isDisabled,
-  onChange,
-}) => (
-  <div style={{ padding: 10 }}>
-    <Checkbox
-      value={value}
-      size={size}
-      isDisabled={isDisabled}
-      onChange={onChange}
-    />
+const handleSetIndeterminate = () => {
+  const checkBoxes = document.querySelectorAll("input");
+  checkBoxes.forEach((checkbox) => {
+    checkbox.indeterminate = true;
+  });
+};
+
+const Template: StoryFn<typeof Checkbox> = ({ size, value, isDisabled }) => (
+  <div style={{ display: "column", gap: "10" }}>
+    <div style={{ padding: 10 }}>
+      <Checkbox value={value} size={size} isDisabled={isDisabled} />
+    </div>
+    <div style={{ padding: 10 }}>
+      <Checkbox value={value} size={size} isDisabled={isDisabled} />
+      <Checkbox value={value} size={size} isDisabled={isDisabled} />
+      <Checkbox value={value} size={size} isDisabled={isDisabled} />
+    </div>
+    <div>
+      <button type="button" onClick={handleSetIndeterminate}>
+        Set Indeterminate
+      </button>
+    </div>
   </div>
 );
 

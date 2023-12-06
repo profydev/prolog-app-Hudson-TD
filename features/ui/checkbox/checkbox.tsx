@@ -1,3 +1,4 @@
+import { useState } from "react";
 import classNames from "classnames";
 import styles from "./checkbox.module.scss";
 
@@ -9,26 +10,28 @@ export enum CheckboxSize {
 type CheckboxProps = {
   value: string;
   size?: CheckboxSize;
-  onChange: () => void;
   isDisabled?: boolean;
 };
 
 export function Checkbox({
   value,
   size = CheckboxSize.sm,
-  onChange,
   isDisabled = false,
 }: CheckboxProps) {
+  const [isChecked, setChecked] = useState(false);
   return (
-    <div>
+    <div className={classNames(styles.container, styles[size])}>
       <input
         id={value}
         type="checkbox"
         className={classNames(styles.checkbox, styles[size])}
-        onChange={onChange}
+        checked={isChecked}
+        onChange={() => setChecked(!isChecked)}
         disabled={isDisabled}
       />
-      <label htmlFor={value}>{value}</label>
+      <label htmlFor={value} className={classNames(styles.label, styles[size])}>
+        {value}
+      </label>
     </div>
   );
 }
