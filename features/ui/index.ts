@@ -3,3 +3,4 @@ export * from "./button";
 export * from "./error";
 export * from "./spinner";
 export * from "./checkbox";
+export * from "./input";
