@@ -12,33 +12,37 @@ export default {
 
 const Template: StoryFn<typeof Input> = ({
   type,
-  label,
+  labelText,
   iconPath,
   iconAlt,
-  hint,
-  isRequired,
-  errorMsg,
+  placeholderText,
+  hintText,
+  inputError,
+  errorText,
+  isDisabled,
 }) => (
   <Input
     type={type}
-    label={label}
+    labelText={labelText}
     iconPath={iconPath}
     iconAlt={iconAlt}
-    hint={hint}
-    isRequired={isRequired}
-    errorMsg={errorMsg}
+    hintText={hintText}
+    inputError={inputError}
+    errorText={errorText}
+    placeholderText={placeholderText}
+    isDisabled={isDisabled}
   />
 );
 
 export const Default = Template.bind({});
 Default.args = {
   type: "text",
-  label: "Testing Label",
-  iconPath: "../../../public/icons/checkmark.svg",
+  labelText: "Email",
+  iconPath: "../icons/mail.svg",
   iconAlt: "Test Alt",
-  hint: "This is a hint",
-  isRequired: true,
-  errorMsg: "This is an error message",
+  hintText: "This is a hint text to help user.",
+  errorText: "This is an error message.",
+  placeholderText: "Zoro.Roronoa@OnePiece.com",
 };
 Default.parameters = {
   viewMode: "docs",

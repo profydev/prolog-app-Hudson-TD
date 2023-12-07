@@ -1,45 +1,84 @@
 import { useState } from "react";
 import styles from "./input.module.scss";
+import classNames from "classnames";
 
 type InputProps = {
   type: string;
-  label: string;
+  labelText: string;
   iconPath?: string;
   iconAlt?: string;
-  hint?: string;
-  isRequired?: boolean;
-  pattern?: string;
-  errorMsg?: string;
+  placeholderText?: string;
+  hintText?: string;
+  inputError?: boolean;
+  errorText?: string;
+  isDisabled?: boolean;
 };
 
 export function Input({
   type = "text",
-  label,
-  iconPath,
-  iconAlt,
-  hint,
-  isRequired,
-  errorMsg,
+  labelText,
+  iconPath = "",
+  iconAlt = "",
+  placeholderText,
+  hintText,
+  inputError,
+  errorText,
+  isDisabled,
 }: InputProps) {
-  const [inputValue, setInputValue] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
   return (
-    <div className={styles.container}>
-      <label htmlFor={label}>{label}</label>
-      <div>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={iconPath} alt={iconAlt} />
-        <input
-          id={label}
-          type={type}
-          required={isRequired}
-          value={inputValue}
-          onChange={(e) => {
-            setInputValue(e.target.value);
-          }}
-        ></input>
+    <div className={styles.parentContainer}>
+      <label className={styles.label} htmlFor={labelText}>
+        {labelText}
+      </label>
+      <div
+        className={classNames(
+          styles.contentContainer,
+          isDisabled && styles.disabled,
+          isFocused && styles.focused,
+          inputError && styles.error,
+        )}
+      >
+        <div className={styles.inputContent}>
+          <div className={styles.inputContentLeft}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className={classNames(
+                styles.inputIcon,
+                iconPath === "" && styles.remove,
+              )}
+              src={iconPath}
+              alt={iconAlt}
+            />
+            <input
+              id={labelText}
+              type={type}
+              className={classNames(
+                styles.inputField,
+                inputError && styles.error,
+              )}
+              placeholder={placeholderText}
+              disabled={isDisabled}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+            />
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className={inputError ? styles.alertIcon : styles.hidden}
+            src={"../icons/alert-circle.svg"}
+            alt="alert circle"
+          />
+        </div>
       </div>
-      <p className={styles.test}>{hint}</p>
-      <p>{errorMsg}</p>
+      <p
+        className={classNames(
+          styles.message,
+          inputError ? styles.error : styles.hint,
+        )}
+      >
+        {inputError ? errorText : hintText}
+      </p>
     </div>
   );
 }
