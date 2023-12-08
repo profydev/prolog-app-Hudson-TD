@@ -1,19 +1,127 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+@use "@styles/breakpoint";
+
 .header {
   width: 100%;
-  height: 80px;
-  padding: 0 2rem;
-  box-sizing: border-box;
+  height: 4.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  padding: 0;
+  margin: 0;
   background: white;
+  text-align: center;
+
+  @media (min-width: breakpoint.$desktop) {
+    height: space.$s20;
+  }
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  @media (min-width: breakpoint.$desktop) {
+    width: calc(1280px - 2 * space.$s8);
+    gap: space.$s10;
+  }
+}
+
+.logoContainer {
+  flex: 1;
+  display: flex;
+  justify-content: start;
+  padding-left: space.$s4;
+
+  @media (min-width: breakpoint.$desktop) {
+    padding: space.$s6 0;
+  }
+}
+
+.navContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: space.$s8;
+  position: fixed;
+  top: 0;
+  left: calc(-50% - space.$s2 - 1px);
+  width: 50%;
+  height: 100%;
+  margin-top: 4.5rem;
+  padding-top: space.$s5;
+  padding-left: space.$s2;
+  background-color: color.$gray-50;
+  border: 1px solid color.$gray-300;
+  border-radius: 0 space.$s8 0 0;
+  transition: left 0.3s ease;
+
+  &.show {
+    left: 0;
+    visibility: visible;
+  }
+
+  &.hide {
+    visibility: hidden;
+  }
+
+  @media (min-width: breakpoint.$desktop) {
+    flex: 1;
+    flex-direction: row;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    align-items: center;
+    background-color: white;
+    gap: space.$s8;
+    list-style: none;
+    border: none;
+    transition: none;
+  }
+}
+
+.navLink {
+  text-decoration: none;
+  font: font.$text-md-semibold;
+  color: color.$gray-500;
+
+  @media (min-width: breakpoint.$desktop) {
+    font: font.$text-md-medium;
+  }
+}
+
+.buttonContainer {
+  padding-right: space.$s3;
+
+  @media (min-width: breakpoint.$desktop) {
+    flex: 1;
+    display: flex;
+    justify-content: end;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.dashboardButton {
+  padding: 1.375rem 0;
+}
+
+.menuIcon {
+  padding: space.$s2;
 }
 
 .contactButton {
   position: absolute;
-  bottom: 2.5rem;
-  right: 2.5rem;
-  padding: 1rem;
+  bottom: space.$s10;
+  right: space.$s10;
+  padding: space.$s4;
   background: #7f56d9;
   border-radius: 50%;
   box-shadow: 0 1px 2px rgb(16 24 40 / 5%);
@@ -23,4 +131,12 @@
   &:hover {
     background: #6941c6;
   }
+}
+
+.remove {
+  display: none;
+}
+
+.hidden {
+  visibility: hidden;
 }
