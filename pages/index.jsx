@@ -105,9 +105,9 @@ const LandingPage = () => {
           </div>
         </div>
       </header>
-      <main>
+      <main className={styles.main}>
         <section className={styles.heroContainer}>
-          <div className={styles.contentContainer}>
+          <div className={styles.heroContentContainer}>
             <div className={styles.textContent}>
               <h1 className={styles.titleText}>{pageData.sections[0].title}</h1>
               <p className={styles.subtitleText}>
@@ -117,6 +117,7 @@ const LandingPage = () => {
             <div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
+                className={styles.heroImg}
                 src={`https://prolog-api.profy.dev${pageData.sections[0].image.src}`}
                 alt="text"
               />

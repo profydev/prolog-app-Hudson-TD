@@ -3,6 +3,7 @@
 @use "@styles/space";
 @use "@styles/breakpoint";
 
+// Header styling
 .header {
   width: 100%;
   height: 4.5rem;
@@ -141,6 +142,11 @@
   visibility: hidden;
 }
 
+.main {
+  width: 100%;
+}
+
+// Hero section styling
 .heroContainer {
   width: 100%;
   display: flex;
@@ -149,13 +155,16 @@
   background-color: color.$gray-50;
 }
 
-.contentContainer {
-  width: 1280px;
-  padding: 96px 0;
+.heroContentContainer {
+  padding: 64px 16px;
   gap: 64px;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (min-width: breakpoint.$desktop) {
+    padding: 96px 0;
+  }
 }
 
 .textContent {
@@ -166,15 +175,33 @@
 }
 
 .titleText {
-  font: font.$display-xl-semibold;
+  font: font.$display-md-semibold;
   color: color.$gray-900;
   margin: 0;
   padding-bottom: 24px;
+
+  @media (min-width: breakpoint.$desktop) {
+    font: font.$display-xl-semibold;
+  }
 }
 
 .subtitleText {
-  width: 648px;
-  font: font.$text-xl-regular;
+  max-width: 648px;
+  font: font.$text-lg-regular;
   color: color.$gray-500;
   margin: 0;
+
+  @media (min-width: breakpoint.$desktop) {
+    font: font.$text-xl-regular;
+  }
+}
+
+.heroImg {
+  width: 343px;
+  height: 202px;
+
+  @media (min-width: breakpoint.$desktop) {
+    width: 753.676px;
+    height: 445.894px;
+  }
 }
