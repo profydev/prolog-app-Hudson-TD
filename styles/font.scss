@@ -29,6 +29,15 @@ $text-md-medium:
 $text-md-semibold:
   600 1rem/1.5rem inter,
   sans-serif;
+$text-xl-regular:
+  400 1.25rem/1.875rem inter,
+  sans-serif;
+$text-xl-medium:
+  500 1.25rem/1.875rem inter,
+  sans-serif;
+$text-xl-semibold:
+  600 1.25rem/1.875rem inter,
+  sans-serif;
 
 /* Display */
 $display-sm-regular:
@@ -48,4 +57,13 @@ $display-md-medium:
   sans-serif;
 $display-md-semibold:
   600 2.25rem/2.75rem inter,
+  sans-serif;
+$display-xl-regular:
+  400 3.75rem/4.5rem inter,
+  sans-serif;
+$display-xl-medium:
+  500 3.75rem/4.5rem inter,
+  sans-serif;
+$display-xl-semibold:
+  600 3.75rem/4.5rem inter,
   sans-serif;

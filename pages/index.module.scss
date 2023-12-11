@@ -34,7 +34,7 @@
 .logoContainer {
   flex: 1;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   padding-left: space.$s4;
 
   @media (min-width: breakpoint.$desktop) {
@@ -103,7 +103,7 @@
   @media (min-width: breakpoint.$desktop) {
     flex: 1;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     padding: 0;
     margin: 0;
   }
@@ -139,4 +139,42 @@
 
 .hidden {
   visibility: hidden;
+}
+
+.heroContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: color.$gray-50;
+}
+
+.contentContainer {
+  width: 1280px;
+  padding: 96px 0;
+  gap: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.titleText {
+  font: font.$display-xl-semibold;
+  color: color.$gray-900;
+  margin: 0;
+  padding-bottom: 24px;
+}
+
+.subtitleText {
+  width: 648px;
+  font: font.$text-xl-regular;
+  color: color.$gray-500;
+  margin: 0;
 }
