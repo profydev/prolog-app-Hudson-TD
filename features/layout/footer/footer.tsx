@@ -27,7 +27,7 @@ export function Footer() {
             <img src="/icons/logo-small.svg" alt="logo" id="footerLogo" />
           </div>
           <div className={styles.versionContainer}>
-            <p className={styles.version} id="app">
+            <p className={styles.version} id="appBuild">
               Version: {publicRuntimeConfig?.version}
             </p>
           </div>
