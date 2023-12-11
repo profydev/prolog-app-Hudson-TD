@@ -1,9 +1,9 @@
+import getConfig from "next/config";
 import styles from "./footer.module.scss";
-import { version } from "../../../package.json";
 import Link from "next/link";
 
 export function Footer() {
-  const appBuild = version;
+  const { publicRuntimeConfig } = getConfig();
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -28,7 +28,7 @@ export function Footer() {
           </div>
           <div className={styles.versionContainer}>
             <p className={styles.version} id="appBuild">
-              Version: {appBuild}
+              Version: {publicRuntimeConfig?.version}
             </p>
           </div>
         </div>

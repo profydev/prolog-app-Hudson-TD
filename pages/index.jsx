@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import { Routes } from "@config/routes";
 import { Button } from "../features/ui/button/button";
+import axios from "axios";
 import Link from "next/link";
 import styles from "./index.module.scss";
 import classNames from "classnames";
+import { Spinner } from "@features/ui";
 
 const LandingPage = () => {
   const [viewportWidth, setViewportWidth] = useState(0);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMobileViewport, setMobileViewport] = useState(false);
+  const [pageData, setPageData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleViewportUpdate = () => {
@@ -22,6 +26,23 @@ const LandingPage = () => {
     // Cleanup eventlistener on unmount
     return () => window.removeEventListener("resize", handleViewportUpdate);
   });
+
+  useEffect(() => {
+    axios
+      .get("https://prolog-api.profy.dev/content-page/home")
+      .then((response) => {
+        setPageData(response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        alert("error encountered: " + error);
+      });
+  }, []);
+
+  if (isLoading) {
+    return <Spinner />; // Show loading message while data is loading
+  }
+
   return (
     <div>
       <header className={styles.header}>
@@ -84,6 +105,26 @@ const LandingPage = () => {
           </div>
         </div>
       </header>
+      <main className={styles.main}>
+        <section className={styles.heroContainer}>
+          <div className={styles.heroContentContainer}>
+            <div className={styles.textContent}>
+              <h1 className={styles.titleText}>{pageData.sections[0].title}</h1>
+              <p className={styles.subtitleText}>
+                {pageData.sections[0].subtitle}
+              </p>
+            </div>
+            <div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className={styles.heroImg}
+                src={`https://prolog-api.profy.dev${pageData.sections[0].image.src}`}
+                alt="text"
+              />
+            </div>
+          </div>
+        </section>
+      </main>
       <button
         className={styles.contactButton}
         onClick={() =>
