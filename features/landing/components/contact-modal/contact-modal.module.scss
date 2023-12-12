@@ -18,3 +18,77 @@
     background: #6941c6;
   }
 }
+
+.modalContainer {
+  width: calc(100% - 2 * space.$s4);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: space.$s3;
+  background-color: #fff;
+  z-index: 2;
+
+  @media (min-width: breakpoint.$desktop) {
+    width: 400px;
+  }
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: space.$s6;
+  gap: space.$s8;
+}
+
+.contactIcon {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  padding-bottom: space.$s5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalTitle {
+  font: font.$text-lg-medium;
+  color: color.$gray-900;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.modalSubtitle {
+  font: font.$text-sm-regular;
+  color: color.$gray-500;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  gap: space.$s3;
+}
+
+.button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+// Page blur on modal open
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 30%);
+  backdrop-filter: blur(5px);
+}
