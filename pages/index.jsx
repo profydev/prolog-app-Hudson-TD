@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Routes } from "@config/routes";
 import { Button } from "../features/ui/button/button";
+import { ContactModal } from "@features/landing";
 import axios from "axios";
 import Link from "next/link";
 import styles from "./index.module.scss";
@@ -125,17 +126,7 @@ const LandingPage = () => {
           </div>
         </section>
       </main>
-      <button
-        className={styles.contactButton}
-        onClick={() =>
-          alert(
-            "Implement this in Challenge 2 - Modal:\n\nhttps://profy.dev/rjs-challenge-modal",
-          )
-        }
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/icons/message.svg" alt="Contact" />
-      </button>
+      <ContactModal />
     </div>
   );
 };
