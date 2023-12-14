@@ -3,6 +3,7 @@ import styles from "./input.module.scss";
 import classNames from "classnames";
 
 type InputProps = {
+  className?: string;
   type: string;
   labelText: string;
   iconPath?: string;
@@ -15,6 +16,7 @@ type InputProps = {
 };
 
 export function Input({
+  className,
   type = "text",
   labelText = "",
   iconPath = "",
@@ -27,7 +29,7 @@ export function Input({
 }: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
   return (
-    <div className={styles.parentContainer}>
+    <div className={classNames(styles.parentContainer, className)}>
       <label
         className={classNames(styles.label, labelText === "" && styles.remove)}
         htmlFor={labelText}
