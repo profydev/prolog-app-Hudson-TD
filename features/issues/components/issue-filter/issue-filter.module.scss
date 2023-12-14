@@ -1,0 +1,38 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+
+.filterContainer {
+  display: flex;
+  width: 100%;
+  padding-bottom: 1.5rem;
+}
+
+.filterContent {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.leftSideContent {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+}
+
+.rightSideContent {
+  flex: 1;
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+}
+
+.selectEl {
+  width: 160px;
+  height: 44px;
+}
+
+.inputEl {
+  width: 280px;
+  height: 44px;
+}
