@@ -8,6 +8,7 @@ interface option {
 }
 
 type SelectProps = {
+  className?: string;
   labelText: string;
   optionsData: option[];
   iconPath?: string;
@@ -20,6 +21,7 @@ type SelectProps = {
 };
 
 export function Select({
+  className,
   labelText,
   optionsData = [],
   iconPath = "",
@@ -57,7 +59,7 @@ export function Select({
     }
   }
   return (
-    <div className={styles.parentContainer}>
+    <div className={classNames(styles.parentContainer, className)}>
       <div className={styles.selectContainer}>
         <label className={styles.label} htmlFor={labelText}>
           {labelText}
