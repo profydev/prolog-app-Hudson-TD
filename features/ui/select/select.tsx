@@ -122,18 +122,24 @@ export function Select({
             styles.message,
             selectError ? styles.error : styles.hint,
             isOpen && styles.hidden,
+            // Covers edge case of options being open when disabled = true is invoked
+            isOpen && isDisabled && styles.visible,
           )}
         >
           {selectError ? errorText : hintText}
         </p>
       </div>
-      <div className={styles.optionsContainer}>
+      <div
+        className={classNames(
+          styles.optionsContainer,
+          isDisabled && styles.hidden,
+        )}
+      >
         {isOpen && (
           <ul
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            onAbort={() => setIsOpen(false)}
-            className={styles.optionsList}
+            className={classNames(styles.optionsList)}
+            // Improved user experience when optionsList is no longer in focus
+            onMouseLeave={() => setTimeout(() => setIsOpen(false), 500)}
           >
             {optionsData.map((option) => (
               <li
@@ -145,6 +151,8 @@ export function Select({
                 tabIndex={0}
                 key={option.value}
                 data-value={option.value}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
                 onClick={() => {
                   handleSelect(option);
                 }}
