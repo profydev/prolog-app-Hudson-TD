@@ -1,0 +1,163 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+
+.parentContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  width: 320px;
+}
+
+.selectContainer {
+  width: 100%;
+}
+
+.label {
+  font: font.$text-sm-medium;
+  color: color.$gray-700;
+  text-align: left;
+  padding: 0 0 0.375rem;
+}
+
+.contentContainer {
+  border: 1px solid #ddd;
+  border-radius: space.$s2;
+  width: 100%;
+
+  &.error {
+    border-color: color.$error-300;
+
+    &.disabled {
+      border-color: color.$error-300;
+      background-color: #fff;
+    }
+
+    &.focused {
+      border-color: color.$error-300;
+      outline: space.$s1 solid color.$error-100;
+    }
+  }
+
+  &.disabled {
+    border-color: color.$gray-300;
+    background-color: color.$gray-50;
+    color: color.$gray-500;
+  }
+
+  &.focused {
+    border-color: color.$primary-300;
+    outline: space.$s1 solid color.$primary-100;
+  }
+}
+
+.selectContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: space.$s2;
+  padding: 0.625rem 0.875rem;
+  margin: 0;
+}
+
+.selectContentLeft {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: space.$s2;
+}
+
+.selectIcon {
+  width: space.$s5;
+  height: space.$s5;
+}
+
+.selectField {
+  width: 100%;
+  border: none;
+  outline: none;
+  color: color.$gray-500;
+  display: flex;
+  flex-direction: column;
+
+  &.error {
+    background-color: #fff;
+  }
+
+  &.selected {
+    color: color.$gray-900;
+  }
+}
+
+.optionsContainer {
+  position: absolute;
+  top: calc(44px + 14px);
+  width: 100%;
+}
+
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  list-style: none;
+  align-items: flex-start;
+  background-color: #fff;
+  box-shadow:
+    0 4px 6px -2px rgb(16 24 40 / 5%),
+    0 12px 16px -4px rgb(16 24 40 / 10%);
+  border-radius: 0.5rem;
+  padding: 4px 0;
+}
+
+.option {
+  width: calc(100% - 2 * 14px);
+  line-height: 24px;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+
+  &.selected {
+    background-color: color.$primary-25;
+  }
+
+  &:focus,
+  &:hover {
+    outline: 1px solid color.$primary-300;
+    border-radius: space.$s2;
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.remove {
+  display: none;
+}
+
+.message {
+  font: font.$text-sm-medium;
+  padding: 0.375rem 0 0;
+  margin: 0;
+
+  &.error {
+    color: color.$error-500;
+  }
+
+  &.hint {
+    color: color.$gray-500;
+  }
+}
+
+.button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
