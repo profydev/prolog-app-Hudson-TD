@@ -16,7 +16,7 @@ type InputProps = {
 
 export function Input({
   type = "text",
-  labelText,
+  labelText = "",
   iconPath = "",
   iconAlt = "",
   placeholderText,
@@ -28,7 +28,10 @@ export function Input({
   const [isFocused, setIsFocused] = useState(false);
   return (
     <div className={styles.parentContainer}>
-      <label className={styles.label} htmlFor={labelText}>
+      <label
+        className={classNames(styles.label, labelText === "" && styles.remove)}
+        htmlFor={labelText}
+      >
         {labelText}
       </label>
       <div
