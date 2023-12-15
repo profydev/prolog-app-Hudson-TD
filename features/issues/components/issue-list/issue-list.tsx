@@ -14,7 +14,11 @@ export function IssueList() {
       query: { page: newPage },
     });
 
-  const issuesPage = useGetIssues(page);
+  const status = "";
+  const level = "info";
+  const project = "Backend";
+
+  const issuesPage = useGetIssues(page, status, level, project);
   const projects = useGetProjects();
 
   if (projects.isLoading || issuesPage.isLoading) {
