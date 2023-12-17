@@ -25,7 +25,7 @@ export function IssueFilter() {
               { param: "status", value: "resolved", text: "Resolved" },
             ]}
             placeholderText="Status"
-            handler={handleFilters}
+            handleFilter={handleFilters}
           />
           <Select
             className={styles.selectEl}
@@ -34,10 +34,9 @@ export function IssueFilter() {
               { param: "level", value: "error", text: "Error" },
               { param: "level", value: "warning", text: "Warning" },
               { param: "level", value: "info", text: "Info" },
-              { param: "level", value: "", text: "Remove Filter" },
             ]}
             placeholderText="Level"
-            handler={handleFilters}
+            handleFilter={handleFilters}
           />
           <Input
             className={styles.inputEl}

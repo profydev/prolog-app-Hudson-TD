@@ -19,7 +19,7 @@ type SelectProps = {
   selectError?: boolean;
   errorText?: string;
   isDisabled?: boolean;
-  handler: (arg: object) => void;
+  handleFilter: (arg: object) => void;
 };
 
 export function Select({
@@ -33,13 +33,15 @@ export function Select({
   selectError,
   errorText,
   isDisabled = false,
-  handler,
+  handleFilter,
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [currentSelection, setCurrentSelection] = useState("");
 
   function handleSelect(selection: option) {
-    handler({ [selection.param]: selection.value });
+    handleFilter({ [selection.param]: selection.value });
+    setCurrentSelection(selection.text);
     setIsOpen(false);
     setIsFocused(false);
   }
@@ -87,11 +89,11 @@ export function Select({
                 className={classNames(
                   styles.selectField,
                   selectError && styles.error,
-                  // selectedValue.text !== "" && styles.selected,
+                  currentSelection !== "" && styles.selected,
                 )}
                 placeholder={placeholderText}
               >
-                Current filter
+                {currentSelection === "" ? placeholderText : currentSelection}
               </div>
               <button
                 type="button"
@@ -144,7 +146,7 @@ export function Select({
               <li
                 className={classNames(
                   styles.option,
-                  // selectedValue.text === option.text ? styles.selected : null,
+                  currentSelection === option.text ? styles.selected : null,
                 )}
                 // Organic tabbing for options list
                 tabIndex={0}
@@ -161,9 +163,9 @@ export function Select({
                 <span>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    // className={
-                    //   // selectedValue.text === option.text ? "" : styles.hidden
-                    // }
+                    className={
+                      currentSelection === option.text ? "" : styles.hidden
+                    }
                     src={"../icons/checkmark-primary.svg"}
                     alt={"Selected option"}
                   />
