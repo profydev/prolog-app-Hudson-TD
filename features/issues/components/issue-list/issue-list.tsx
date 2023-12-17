@@ -15,12 +15,7 @@ export function IssueList() {
       query: { page: newPage },
     });
 
-  // Testing constants, will be replaced with state data props or context soon
-  const status = "";
-  const level = "";
-  const project = "Front";
-
-  const issuesPage = useGetIssues(page, status, level, project);
+  const issuesPage = useGetIssues(page);
   const projects = useGetProjects();
 
   if (projects.isLoading || issuesPage.isLoading) {

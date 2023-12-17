@@ -2,26 +2,23 @@ import { useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getIssues } from "@api/issues";
 import type { Page } from "@typings/page.types";
-import type { Issue } from "@api/issues.types";
+import type { Issue, IssueFilters } from "@api/issues.types";
+import { useFilters } from "../components/issue-filter/use-filters";
 
 const QUERY_KEY = "issues";
 
-export function getQueryKey(page?: number) {
+export function getQueryKey(page?: number, filters?: IssueFilters) {
   if (page === undefined) {
     return [QUERY_KEY];
   }
-  return [QUERY_KEY, page];
+  return [QUERY_KEY, page, filters];
 }
 
-export function useGetIssues(
-  page: number,
-  status: string,
-  level: string,
-  project: string,
-) {
+export function useGetIssues(page: number) {
+  const { filters } = useFilters();
   const query = useQuery<Page<Issue>, Error>(
-    getQueryKey(page),
-    ({ signal }) => getIssues(page, status, level, project, { signal }),
+    getQueryKey(page, filters),
+    ({ signal }) => getIssues(page, filters, { signal }),
     { keepPreviousData: true },
   );
 
@@ -29,10 +26,10 @@ export function useGetIssues(
   const queryClient = useQueryClient();
   useEffect(() => {
     if (query.data?.meta.hasNextPage) {
-      queryClient.prefetchQuery(getQueryKey(page + 1), ({ signal }) =>
-        getIssues(page + 1, status, level, project, { signal }),
+      queryClient.prefetchQuery(getQueryKey(page + 1, filters), ({ signal }) =>
+        getIssues(page + 1, filters, { signal }),
       );
     }
-  }, [query.data, page, status, level, project, queryClient]);
+  }, [query.data, page, filters, queryClient]);
   return query;
 }

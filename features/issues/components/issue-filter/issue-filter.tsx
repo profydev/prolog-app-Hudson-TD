@@ -1,7 +1,9 @@
 import { Select, Input, Button, ButtonSize, ButtonColor } from "@features/ui";
 import styles from "./issue-filter.module.scss";
+import { useFilters } from "./use-filters";
 
 export function IssueFilter() {
+  const { handleFilters } = useFilters();
   return (
     <div className={styles.filterContainer}>
       <div className={styles.filterContent}>
@@ -19,20 +21,23 @@ export function IssueFilter() {
             className={styles.selectEl}
             labelText=""
             optionsData={[
-              { value: "", text: "Unresolved" },
-              { value: "", text: "Resolved" },
+              { param: "status", value: "open", text: "Unresolved" },
+              { param: "status", value: "resolved", text: "Resolved" },
             ]}
             placeholderText="Status"
+            handler={handleFilters}
           />
           <Select
             className={styles.selectEl}
             labelText=""
             optionsData={[
-              { value: "", text: "Error" },
-              { value: "", text: "Warning" },
-              { value: "", text: "Info" },
+              { param: "level", value: "error", text: "Error" },
+              { param: "level", value: "warning", text: "Warning" },
+              { param: "level", value: "info", text: "Info" },
+              { param: "level", value: "", text: "Remove Filter" },
             ]}
             placeholderText="Level"
+            handler={handleFilters}
           />
           <Input
             className={styles.inputEl}
