@@ -13,6 +13,8 @@ type InputProps = {
   inputError?: boolean;
   errorText?: string;
   isDisabled?: boolean;
+  inputIdentifier: string;
+  inputHandler: (arg: object) => void;
 };
 
 export function Input({
@@ -26,6 +28,8 @@ export function Input({
   inputError,
   errorText,
   isDisabled,
+  inputIdentifier,
+  inputHandler,
 }: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
   return (
@@ -66,6 +70,9 @@ export function Input({
               disabled={isDisabled}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
+              onChange={(e) =>
+                inputHandler({ [inputIdentifier]: e.target.value })
+              }
             />
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}

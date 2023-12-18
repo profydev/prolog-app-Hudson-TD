@@ -20,6 +20,8 @@ const Template: StoryFn<typeof Input> = ({
   inputError,
   errorText,
   isDisabled,
+  inputIdentifier,
+  inputHandler,
 }) => (
   <Input
     type={type}
@@ -31,6 +33,8 @@ const Template: StoryFn<typeof Input> = ({
     errorText={errorText}
     placeholderText={placeholderText}
     isDisabled={isDisabled}
+    inputIdentifier={inputIdentifier}
+    inputHandler={inputHandler}
   />
 );
 
@@ -43,6 +47,7 @@ Default.args = {
   hintText: "This is a hint text to help user.",
   errorText: "This is an error message.",
   placeholderText: "Zoro.Roronoa@OnePiece.com",
+  inputIdentifier: "Test",
 };
 Default.parameters = {
   viewMode: "docs",

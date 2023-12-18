@@ -20,7 +20,8 @@ const Template: StoryFn<typeof Select> = ({
   selectError,
   errorText,
   isDisabled,
-  handleFilter,
+  inputIdentifier,
+  inputHandler,
 }) => (
   <Select
     labelText={labelText}
@@ -32,7 +33,8 @@ const Template: StoryFn<typeof Select> = ({
     errorText={errorText}
     placeholderText={placeholderText}
     isDisabled={isDisabled}
-    handleFilter={handleFilter}
+    inputIdentifier={inputIdentifier}
+    inputHandler={inputHandler}
   ></Select>
 );
 
@@ -40,18 +42,19 @@ export const Default = Template.bind({});
 Default.args = {
   labelText: "Team Member",
   optionsData: [
-    { param: "testParam", value: "option1", text: "Option 1" },
-    { param: "testParam", value: "option2", text: "Option 2" },
-    { param: "testParam", value: "option3", text: "Option 3" },
-    { param: "testParam", value: "option4", text: "Option 4" },
-    { param: "testParam", value: "option5", text: "Option 5" },
-    { param: "testParam", value: "option6", text: "Option 6" },
+    { value: "option1", text: "Option 1" },
+    { value: "option2", text: "Option 2" },
+    { value: "option3", text: "Option 3" },
+    { value: "option4", text: "Option 4" },
+    { value: "option5", text: "Option 5" },
+    { value: "option6", text: "Option 6" },
   ],
   iconPath: "../icons/user.svg",
   iconAlt: "Test Alt",
   hintText: "This is a hint text to help user.",
   errorText: "This is an error message.",
   placeholderText: "Select a team member",
+  inputIdentifier: "Test",
 };
 Default.parameters = {
   viewMode: "docs",

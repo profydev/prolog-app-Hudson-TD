@@ -3,7 +3,6 @@ import styles from "./select.module.scss";
 import classNames from "classnames";
 
 interface option {
-  param: string;
   value: string;
   text: string;
 }
@@ -19,7 +18,8 @@ type SelectProps = {
   selectError?: boolean;
   errorText?: string;
   isDisabled?: boolean;
-  handleFilter: (arg: object) => void;
+  inputIdentifier: string;
+  inputHandler: (arg: object) => void;
 };
 
 export function Select({
@@ -33,14 +33,15 @@ export function Select({
   selectError,
   errorText,
   isDisabled = false,
-  handleFilter,
+  inputIdentifier,
+  inputHandler,
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [currentSelection, setCurrentSelection] = useState("");
 
   function handleSelect(selection: option) {
-    handleFilter({ [selection.param]: selection.value });
+    inputHandler({ [inputIdentifier]: selection.value });
     setCurrentSelection(selection.text);
     setIsOpen(false);
     setIsFocused(false);

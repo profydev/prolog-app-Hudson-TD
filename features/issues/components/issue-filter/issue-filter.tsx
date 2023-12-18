@@ -21,22 +21,24 @@ export function IssueFilter() {
             className={styles.selectEl}
             labelText=""
             optionsData={[
-              { param: "status", value: "open", text: "Unresolved" },
-              { param: "status", value: "resolved", text: "Resolved" },
+              { value: "open", text: "Unresolved" },
+              { value: "resolved", text: "Resolved" },
             ]}
             placeholderText="Status"
-            handleFilter={handleFilters}
+            inputIdentifier={"status"}
+            inputHandler={handleFilters}
           />
           <Select
             className={styles.selectEl}
             labelText=""
             optionsData={[
-              { param: "level", value: "error", text: "Error" },
-              { param: "level", value: "warning", text: "Warning" },
-              { param: "level", value: "info", text: "Info" },
+              { value: "error", text: "Error" },
+              { value: "warning", text: "Warning" },
+              { value: "info", text: "Info" },
             ]}
             placeholderText="Level"
-            handleFilter={handleFilters}
+            inputIdentifier={"level"}
+            inputHandler={handleFilters}
           />
           <Input
             className={styles.inputEl}
@@ -45,6 +47,8 @@ export function IssueFilter() {
             iconPath="../icons/search.svg"
             iconAlt="Search"
             placeholderText="Project Name"
+            inputIdentifier={"project"}
+            inputHandler={handleFilters}
           />
         </div>
       </div>
