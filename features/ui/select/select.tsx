@@ -173,6 +173,16 @@ export function Select({
                 </span>
               </li>
             ))}
+            <li
+              className={classNames(classNames(styles.option))}
+              onClick={() => {
+                inputHandler({ [inputIdentifier]: null });
+                setCurrentSelection("");
+                setIsOpen(false);
+              }}
+            >
+              Clear
+            </li>
           </ul>
         )}
       </div>
