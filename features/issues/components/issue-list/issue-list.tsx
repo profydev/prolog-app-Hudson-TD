@@ -5,14 +5,16 @@ import { useGetIssues } from "../../api/use-get-issues";
 import { IssueRow } from "./issue-row";
 import styles from "./issue-list.module.scss";
 import { IssueFilter } from "../issue-filter";
+import { useFilters } from "../issue-filter/use-filters";
 
 export function IssueList() {
   const router = useRouter();
   const page = Number(router.query.page || 1);
+  const { filters } = useFilters();
   const navigateToPage = (newPage: number) =>
     router.push({
       pathname: router.pathname,
-      query: { page: newPage },
+      query: { page: newPage, ...filters },
     });
 
   const issuesPage = useGetIssues(page);
