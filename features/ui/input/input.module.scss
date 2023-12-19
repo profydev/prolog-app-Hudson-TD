@@ -20,7 +20,7 @@
 .contentContainer {
   border: 1px solid #ddd;
   border-radius: space.$s2;
-  width: 100%;
+  padding: 10px 14px;
 
   &.error {
     border-color: color.$error-300;
@@ -53,8 +53,8 @@
   justify-content: space-between;
   align-items: center;
   gap: space.$s2;
-  padding: 0.625rem 0.875rem;
   margin: 0;
+  height: 24px;
 }
 
 .inputContentLeft {

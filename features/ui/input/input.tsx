@@ -1,8 +1,10 @@
 import { useState } from "react";
 import styles from "./input.module.scss";
 import classNames from "classnames";
+import { useRouter } from "next/router";
 
 type InputProps = {
+  className?: string;
   type: string;
   labelText: string;
   iconPath?: string;
@@ -12,11 +14,14 @@ type InputProps = {
   inputError?: boolean;
   errorText?: string;
   isDisabled?: boolean;
+  inputIdentifier: string;
+  inputHandler: (arg: object) => void;
 };
 
 export function Input({
+  className,
   type = "text",
-  labelText,
+  labelText = "",
   iconPath = "",
   iconAlt = "",
   placeholderText,
@@ -24,11 +29,17 @@ export function Input({
   inputError,
   errorText,
   isDisabled,
+  inputIdentifier,
+  inputHandler,
 }: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
+  const router = useRouter();
   return (
-    <div className={styles.parentContainer}>
-      <label className={styles.label} htmlFor={labelText}>
+    <div className={classNames(styles.parentContainer, className)}>
+      <label
+        className={classNames(styles.label, labelText === "" && styles.remove)}
+        htmlFor={labelText}
+      >
         {labelText}
       </label>
       <div
@@ -61,6 +72,10 @@ export function Input({
               disabled={isDisabled}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
+              onChange={(e) =>
+                inputHandler({ [inputIdentifier]: e.target.value })
+              }
+              value={router.query.project}
             />
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}

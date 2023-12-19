@@ -20,6 +20,9 @@ const Template: StoryFn<typeof Select> = ({
   selectError,
   errorText,
   isDisabled,
+  inputIdentifier,
+  inputHandler,
+  handleDisplayText,
 }) => (
   <Select
     labelText={labelText}
@@ -31,6 +34,9 @@ const Template: StoryFn<typeof Select> = ({
     errorText={errorText}
     placeholderText={placeholderText}
     isDisabled={isDisabled}
+    inputIdentifier={inputIdentifier}
+    inputHandler={inputHandler}
+    handleDisplayText={handleDisplayText}
   ></Select>
 );
 
@@ -50,6 +56,7 @@ Default.args = {
   hintText: "This is a hint text to help user.",
   errorText: "This is an error message.",
   placeholderText: "Select a team member",
+  inputIdentifier: "Test",
 };
 Default.parameters = {
   viewMode: "docs",
