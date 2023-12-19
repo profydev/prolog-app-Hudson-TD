@@ -10,7 +10,7 @@ describe("Issue Filter", () => {
       cy.viewport(1440, 1080);
     });
 
-    it("renders filter elements", () => {
+    it("Renders filter elements", () => {
       // Filter parent component exists
       cy.get("[data-cy='issues-filter-container']").should("exist");
       // Resolve button is present
@@ -25,6 +25,97 @@ describe("Issue Filter", () => {
         "have.length",
         3,
       );
+    });
+
+    //Open Status filter options
+    function OpenStatusOptions() {
+      cy.get("[data-cy='issues-filter-right-content'] > div ")
+        .find("button")
+        .eq(0)
+        .click()
+        .wait(500);
+    }
+
+    function OpenLevelOptions() {
+      cy.get("[data-cy='issues-filter-right-content'] > div ")
+        .find("button")
+        .eq(1)
+        .click()
+        .wait(500);
+    }
+
+    it("Handles all status filter selections", () => {
+      //Set status to Unresolved and check URL for appropriate param string
+      OpenStatusOptions();
+      cy.get("main")
+        .find("ul")
+        .contains("Unresolved")
+        .click()
+        .wait(250)
+        .url()
+        .should("contain", "status=open");
+
+      //Set status to Unresolved and check URL for appropriate param string
+      OpenStatusOptions();
+      cy.get("main")
+        .find("ul")
+        .contains("Resolved")
+        .click()
+        .wait(250)
+        .url()
+        .should("contain", "status=resolved");
+
+      //Clear status filter and check URL for appropriate param string
+      OpenStatusOptions();
+      cy.get("main")
+        .find("ul")
+        .contains("Clear")
+        .click()
+        .wait(250)
+        .url()
+        .should("contain", "status=");
+    });
+
+    it("Handles all level filter selections", () => {
+      //Set level to Error and check URL for appropriate param string
+      OpenLevelOptions();
+      cy.get("main")
+        .find("ul")
+        .contains("Error")
+        .click()
+        .wait(250)
+        .url()
+        .should("contain", "level=error");
+
+      //Set level to Warning and check URL for appropriate param string
+      OpenLevelOptions();
+      cy.get("main")
+        .find("ul")
+        .contains("Warning")
+        .click()
+        .wait(250)
+        .url()
+        .should("contain", "level=warning");
+
+      //Set level to Info and check URL for appropriate param string
+      OpenLevelOptions();
+      cy.get("main")
+        .find("ul")
+        .contains("Info")
+        .click()
+        .wait(250)
+        .url()
+        .should("contain", "level=info");
+
+      //Clear level filter and check URL for appropriate param string
+      OpenLevelOptions();
+      cy.get("main")
+        .find("ul")
+        .contains("Clear")
+        .click()
+        .wait(250)
+        .url()
+        .should("contain", "level=");
     });
   });
 });
