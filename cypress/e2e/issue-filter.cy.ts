@@ -117,5 +117,22 @@ describe("Issue Filter", () => {
         .url()
         .should("contain", "level=");
     });
+
+    it("Accepts project filter input", () => {
+      // Search backend project
+      cy.get("[data-cy='issues-filter-right-content'] > div ")
+        .find("input")
+        .click()
+        .type("backend")
+        .url()
+        .should("contain", "project=backend");
+      // clear search and verify param is removed
+      cy.get("[data-cy='issues-filter-right-content'] > div ")
+        .find("input")
+        .click()
+        .clear()
+        .url()
+        .should("contain", "project=");
+    });
   });
 });
