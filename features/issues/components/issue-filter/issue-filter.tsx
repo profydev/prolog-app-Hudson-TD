@@ -5,9 +5,12 @@ import { useFilters } from "./use-filters";
 export function IssueFilter() {
   const { handleFilters } = useFilters();
   return (
-    <div className={styles.filterContainer}>
+    <div data-cy="issues-filter-container" className={styles.filterContainer}>
       <div className={styles.filterContent}>
-        <div className={styles.leftSideContent}>
+        <div
+          data-cy="issues-filter-left-content"
+          className={styles.leftSideContent}
+        >
           <Button
             size={ButtonSize.lg}
             color={ButtonColor.primary}
@@ -16,7 +19,10 @@ export function IssueFilter() {
             Resolve selected issues
           </Button>
         </div>
-        <div className={styles.rightSideContent}>
+        <div
+          data-cy="issues-filter-right-content"
+          className={styles.rightSideContent}
+        >
           <Select
             className={styles.selectEl}
             labelText=""
