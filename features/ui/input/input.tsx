@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./input.module.scss";
 import classNames from "classnames";
+import { useRouter } from "next/router";
 
 type InputProps = {
   className?: string;
@@ -32,6 +33,7 @@ export function Input({
   inputHandler,
 }: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
+  const router = useRouter();
   return (
     <div className={classNames(styles.parentContainer, className)}>
       <label
@@ -73,6 +75,7 @@ export function Input({
               onChange={(e) =>
                 inputHandler({ [inputIdentifier]: e.target.value })
               }
+              value={router.query.project}
             />
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}

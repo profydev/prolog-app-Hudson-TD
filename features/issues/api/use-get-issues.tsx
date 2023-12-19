@@ -7,7 +7,7 @@ import { useFilters } from "../components/issue-filter/use-filters";
 
 const QUERY_KEY = "issues";
 
-export function getQueryKey(page?: number, filters?: IssueFilters) {
+export function getQueryKey(page?: number, filters?: IssueFilters | undefined) {
   if (page === undefined) {
     return [QUERY_KEY];
   }

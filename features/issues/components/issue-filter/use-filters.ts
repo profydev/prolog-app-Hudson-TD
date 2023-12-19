@@ -15,5 +15,10 @@ export const useFilters = () => {
     router.push({ query });
   };
 
-  return { filters, handleFilters };
+  const clearFilters = () => {
+    const emptyFilters = { status: "", level: "", project: "" };
+    router.push({ query: emptyFilters });
+  };
+
+  return { filters, handleFilters, clearFilters };
 };

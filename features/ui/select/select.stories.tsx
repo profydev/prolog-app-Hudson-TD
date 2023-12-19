@@ -22,6 +22,7 @@ const Template: StoryFn<typeof Select> = ({
   isDisabled,
   inputIdentifier,
   inputHandler,
+  handleDisplayText,
 }) => (
   <Select
     labelText={labelText}
@@ -35,6 +36,7 @@ const Template: StoryFn<typeof Select> = ({
     isDisabled={isDisabled}
     inputIdentifier={inputIdentifier}
     inputHandler={inputHandler}
+    handleDisplayText={handleDisplayText}
   ></Select>
 );
 

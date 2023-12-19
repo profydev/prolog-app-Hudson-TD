@@ -1,9 +1,36 @@
 import { Select, Input, Button, ButtonSize, ButtonColor } from "@features/ui";
 import styles from "./issue-filter.module.scss";
 import { useFilters } from "./use-filters";
+import { useRouter } from "next/router";
 
 export function IssueFilter() {
   const { handleFilters } = useFilters();
+  const router = useRouter();
+
+  function handleStatusText() {
+    const displayValue = router.query.status;
+
+    if (displayValue === "open") {
+      return "Unresolved";
+    } else if (displayValue === "resolved") {
+      return "Resolved";
+    } else {
+      return "";
+    }
+  }
+
+  function handleLevelText() {
+    const displayValue = router.query.level;
+    if (displayValue === "error") {
+      return "Error";
+    } else if (displayValue === "warning") {
+      return "Warning";
+    } else if (displayValue === "info") {
+      return "Info";
+    } else {
+      return "";
+    }
+  }
   return (
     <div data-cy="issues-filter-container" className={styles.filterContainer}>
       <div className={styles.filterContent}>
@@ -41,6 +68,7 @@ export function IssueFilter() {
             placeholderText="Status"
             inputIdentifier={"status"}
             inputHandler={handleFilters}
+            handleDisplayText={handleStatusText}
           />
           <Select
             className={styles.selectEl}
@@ -53,6 +81,7 @@ export function IssueFilter() {
             placeholderText="Level"
             inputIdentifier={"level"}
             inputHandler={handleFilters}
+            handleDisplayText={handleLevelText}
           />
           <Input
             className={styles.inputEl}

@@ -1,7 +1,10 @@
 import { Button, ButtonColor, ButtonSize } from "@features/ui";
 import styles from "./not-found.module.scss";
+import { useFilters } from "../issue-filter/use-filters";
 
 export function NotFound() {
+  const { clearFilters } = useFilters();
+
   return (
     <div className={styles.parentContainer}>
       <div className={styles.contentContainer}>
@@ -16,9 +19,7 @@ export function NotFound() {
           className={styles.clearButton}
           size={ButtonSize.lg}
           color={ButtonColor.primary}
-          onClick={() =>
-            alert("Functionality not yet implemented... stay tuned!")
-          }
+          onClick={() => clearFilters()}
         >
           Clear filters
         </Button>
