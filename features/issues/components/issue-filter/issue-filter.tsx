@@ -14,8 +14,16 @@ export function IssueFilter() {
           <Button
             size={ButtonSize.lg}
             color={ButtonColor.primary}
-            onClick={() => null}
+            onClick={() => alert("Feature not yet implemented...stay tuned!")}
+            className={styles.resolveButton}
           >
+            <span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="../icons/checkmark-white.svg"
+                alt="Resolve selected issues"
+              />
+            </span>
             Resolve selected issues
           </Button>
         </div>
