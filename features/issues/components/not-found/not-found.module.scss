@@ -1,0 +1,41 @@
+@use "@styles/color";
+@use "@styles/space";
+@use "@styles/font";
+
+.parentContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: space.$s16 0;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 398px;
+  text-align: center;
+}
+
+.headingText {
+  font: font.$text-md-medium;
+  color: color.$gray-900;
+  padding: space.$s4 space.$s1 0 0;
+  margin: 0;
+}
+
+.subText {
+  font: font.$text-sm-regular;
+  color: color.$gray-500;
+  padding: 0;
+  margin: 0;
+}
+
+.clearButton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: space.$s6;
+}

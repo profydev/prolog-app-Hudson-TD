@@ -6,6 +6,7 @@ import { IssueRow } from "./issue-row";
 import styles from "./issue-list.module.scss";
 import { IssueFilter } from "../issue-filter";
 import { useFilters } from "../issue-filter/use-filters";
+import { NotFound } from "../not-found";
 
 export function IssueList() {
   const router = useRouter();
@@ -46,49 +47,57 @@ export function IssueList() {
   return (
     <>
       <IssueFilter />
-      <div className={styles.container}>
-        <table className={styles.table}>
-          <thead>
-            <tr className={styles.headerRow}>
-              <th className={styles.headerCell}>Issue</th>
-              <th className={styles.headerCell}>Level</th>
-              <th className={styles.headerCell}>Events</th>
-              <th className={styles.headerCell}>Users</th>
-            </tr>
-          </thead>
-          <tbody>
-            {(items || []).map((issue) => (
-              <IssueRow
-                key={issue.id}
-                issue={issue}
-                projectLanguage={projectIdToLanguage[issue.projectId]}
-              />
-            ))}
-          </tbody>
-        </table>
-        <div className={styles.paginationContainer}>
-          <div>
-            <button
-              className={styles.paginationButton}
-              onClick={() => navigateToPage(page - 1)}
-              disabled={page === 1}
-            >
-              Previous
-            </button>
-            <button
-              className={styles.paginationButton}
-              onClick={() => navigateToPage(page + 1)}
-              disabled={page === meta?.totalPages}
-            >
-              Next
-            </button>
+
+      {items.length > 0 ? (
+        <>
+          <div className={styles.container}>
+            <table className={styles.table}>
+              <thead>
+                <tr className={styles.headerRow}>
+                  <th className={styles.headerCell}>Issue</th>
+                  <th className={styles.headerCell}>Level</th>
+                  <th className={styles.headerCell}>Events</th>
+                  <th className={styles.headerCell}>Users</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(items || []).map((issue) => (
+                  <IssueRow
+                    key={issue.id}
+                    issue={issue}
+                    projectLanguage={projectIdToLanguage[issue.projectId]}
+                  />
+                ))}
+              </tbody>
+            </table>
+            <div className={styles.paginationContainer}>
+              <div>
+                <button
+                  className={styles.paginationButton}
+                  onClick={() => navigateToPage(page - 1)}
+                  disabled={page === 1}
+                >
+                  Previous
+                </button>
+                <button
+                  className={styles.paginationButton}
+                  onClick={() => navigateToPage(page + 1)}
+                  disabled={page === meta?.totalPages}
+                >
+                  Next
+                </button>
+              </div>
+              <div className={styles.pageInfo}>
+                Page{" "}
+                <span className={styles.pageNumber}>{meta?.currentPage}</span>{" "}
+                of <span className={styles.pageNumber}>{meta?.totalPages}</span>
+              </div>
+            </div>
           </div>
-          <div className={styles.pageInfo}>
-            Page <span className={styles.pageNumber}>{meta?.currentPage}</span>{" "}
-            of <span className={styles.pageNumber}>{meta?.totalPages}</span>
-          </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <NotFound />
+      )}
     </>
   );
 }
