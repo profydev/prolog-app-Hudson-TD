@@ -43,7 +43,7 @@ describe("Project List", () => {
   });
 });
 
-describe.only("Project List Loading & Error Behavior", () => {
+describe("Project List Loading & Error Behavior", () => {
   beforeEach(() => {
     // Intercept API call to trigger error alter component render
     cy.intercept("GET", "https://prolog-api.profy.dev/project", {
