@@ -22,6 +22,7 @@ describe("Project List", () => {
     it("renders the projects", () => {
       const languageNames = ["React", "Node.js", "Python"];
       const statusText = ["Critical", "Warning", "Stable"];
+      const queryParam = ["Frontend%20-%20Web", "Backend", "ML%20Service"];
 
       // get all project cards
       cy.get("main")
@@ -37,7 +38,8 @@ describe("Project List", () => {
           cy.wrap($el).contains(statusText[index]);
           cy.wrap($el)
             .find("a")
-            .should("have.attr", "href", "/dashboard/issues");
+            .should("have.attr", "href")
+            .should("contain", queryParam[index]);
         });
     });
   });
