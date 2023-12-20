@@ -121,6 +121,60 @@ export function Select({
             </div>
           </div>
         </div>
+        <div
+          className={classNames(
+            styles.optionsContainer,
+            isDisabled && styles.hidden,
+          )}
+        >
+          {isOpen && (
+            <ul
+              className={classNames(styles.optionsList)}
+              // Improved user experience when optionsList is no longer in focus
+              onMouseLeave={() => setTimeout(() => setIsOpen(false), 300)}
+            >
+              {optionsData.map((option) => (
+                <li
+                  className={classNames(
+                    styles.option,
+                    displayText === option.text ? styles.selected : null,
+                  )}
+                  // Organic tabbing for options list
+                  tabIndex={0}
+                  key={option.value}
+                  data-value={option.value}
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => setIsFocused(false)}
+                  onClick={() => {
+                    handleSelect(option);
+                  }}
+                  onKeyDown={(event) => handleSelectAccessiblity(event, option)}
+                >
+                  {option.text}
+                  <span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      className={
+                        displayText === option.text ? "" : styles.hidden
+                      }
+                      src={"../icons/checkmark-primary.svg"}
+                      alt={"Selected option"}
+                    />
+                  </span>
+                </li>
+              ))}
+              <li
+                className={classNames(classNames(styles.option))}
+                onClick={() => {
+                  inputHandler({ [inputIdentifier]: null });
+                  setIsOpen(false);
+                }}
+              >
+                Clear
+              </li>
+            </ul>
+          )}
+        </div>
         <p
           className={classNames(
             styles.message,
@@ -132,58 +186,6 @@ export function Select({
         >
           {selectError ? errorText : hintText}
         </p>
-      </div>
-      <div
-        className={classNames(
-          styles.optionsContainer,
-          isDisabled && styles.hidden,
-        )}
-      >
-        {isOpen && (
-          <ul
-            className={classNames(styles.optionsList)}
-            // Improved user experience when optionsList is no longer in focus
-            onMouseLeave={() => setTimeout(() => setIsOpen(false), 500)}
-          >
-            {optionsData.map((option) => (
-              <li
-                className={classNames(
-                  styles.option,
-                  displayText === option.text ? styles.selected : null,
-                )}
-                // Organic tabbing for options list
-                tabIndex={0}
-                key={option.value}
-                data-value={option.value}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-                onClick={() => {
-                  handleSelect(option);
-                }}
-                onKeyDown={(event) => handleSelectAccessiblity(event, option)}
-              >
-                {option.text}
-                <span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className={displayText === option.text ? "" : styles.hidden}
-                    src={"../icons/checkmark-primary.svg"}
-                    alt={"Selected option"}
-                  />
-                </span>
-              </li>
-            ))}
-            <li
-              className={classNames(classNames(styles.option))}
-              onClick={() => {
-                inputHandler({ [inputIdentifier]: null });
-                setIsOpen(false);
-              }}
-            >
-              Clear
-            </li>
-          </ul>
-        )}
       </div>
     </div>
   );
