@@ -2,11 +2,18 @@
 @use "@styles/space";
 @use "@styles/font";
 
-.row:nth-child(2n) {
-  background: color.$gray-50;
+.row {
+  display: table-row;
+  height: 4rem;
+
+  &:nth-child(2n) {
+    background: color.$gray-50;
+  }
 }
 
 .cell {
+  display: table-cell;
+  vertical-align: middle;
   padding: space.$s4 space.$s6;
   color: color.$gray-500;
   font: font.$text-sm-regular;

@@ -21,8 +21,8 @@ export function IssueRow({ projectLanguage, issue }: IssueRowProps) {
   const firstLineOfStackTrace = stack.split("\n")[1];
 
   return (
-    <tr className={styles.row}>
-      <td className={styles.issueCell}>
+    <li className={styles.row}>
+      <div className={styles.issueCell}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className={styles.languageIcon}
@@ -36,14 +36,14 @@ export function IssueRow({ projectLanguage, issue }: IssueRowProps) {
           </div>
           <div>{firstLineOfStackTrace}</div>
         </div>
-      </td>
-      <td className={styles.cell}>
+      </div>
+      <div className={styles.cell}>
         <Badge color={levelColors[level]} size={BadgeSize.sm}>
           {capitalize(level)}
         </Badge>
-      </td>
-      <td className={styles.cell}>{numEvents}</td>
-      <td className={styles.cell}>{numUsers}</td>
-    </tr>
+      </div>
+      <p className={styles.cell}>{numEvents}</p>
+      <p className={styles.cell}>{numUsers}</p>
+    </li>
   );
 }
