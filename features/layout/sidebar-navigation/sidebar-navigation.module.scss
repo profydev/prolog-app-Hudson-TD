@@ -6,6 +6,7 @@
 
 .container,
 .fixedContainer {
+  z-index: 99;
   width: 100%;
   display: flex;
   flex-direction: column;
