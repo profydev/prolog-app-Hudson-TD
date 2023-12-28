@@ -1,39 +1,100 @@
 @use "@styles/color";
 @use "@styles/space";
 @use "@styles/font";
+@use "@styles/breakpoint";
 
 .row {
-  display: table-row;
-  height: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: space.$s2;
+  padding: space.$s3 space.$s6;
+  background: white;
+  border: 1px solid color.$gray-200;
+  box-sizing: border-box;
+  box-shadow:
+    0 4px 8px -2px rgb(16 24 40 / 10%),
+    0 2px 4px -2px rgb(16 24 40 / 6%);
+  border-radius: space.$s2;
 
-  &:nth-child(2n) {
-    background: color.$gray-50;
+  @media (min-width: breakpoint.$desktop) {
+    display: table-row;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+
+    &:nth-child(even) {
+      background: color.$gray-50;
+    }
   }
 }
 
-.cell {
-  display: table-cell;
-  vertical-align: middle;
-  padding: space.$s4 space.$s6;
-  color: color.$gray-500;
-  font: font.$text-sm-regular;
+.issueCell {
+  display: flex;
+  gap: space.$s3;
+  padding: space.$s4 0;
+
+  @media (min-width: breakpoint.$desktop) {
+    padding: space.$s3 space.$s6;
+  }
 }
 
-.issueCell {
-  composes: cell;
+.wrapper {
   display: flex;
-  align-items: center;
+  justify-content: center;
+}
+
+.metricCell {
+  display: flex;
+  flex-direction: column;
+  vertical-align: middle;
+  gap: space.$s2;
+  padding: space.$s4 space.$s6;
+
+  @media (min-width: breakpoint.$desktop) {
+    display: table-cell;
+    flex-grow: 1;
+  }
+}
+
+.cellHeader {
+  @media (min-width: breakpoint.$desktop) {
+    display: none;
+  }
+}
+
+.cellText {
+  font: font.$text-sm-regular;
+  color: color.$gray-500;
+  padding: 0;
+  margin: 0;
 }
 
 .languageIcon {
   width: space.$s10;
-  margin-right: space.$s3;
+  height: space.$s10;
 }
 
-.errorTypeAndMessage {
+.issueDetails {
+  font: font.$text-sm-regular;
   color: color.$gray-900;
+  text-wrap: nowrap;
 }
 
 .errorType {
   font: font.$text-sm-medium;
+}
+
+.stackTrace {
+  color: color.$gray-500;
+}
+
+.chart {
+  display: flex;
+  order: 3;
+  align-self: center;
+
+  @media (min-width: breakpoint.$desktop) {
+    display: table-cell;
+    padding: space.$s3 space.$s6;
+  }
 }

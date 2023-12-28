@@ -7,6 +7,7 @@ import styles from "./issue-list.module.scss";
 import { IssueFilter } from "../issue-filter";
 import { useFilters } from "../issue-filter/use-filters";
 import { NotFound } from "../not-found";
+import { Spinner } from "@features/ui";
 
 export function IssueList() {
   const router = useRouter();
@@ -22,7 +23,7 @@ export function IssueList() {
   const projects = useGetProjects();
 
   if (projects.isLoading || issuesPage.isLoading) {
-    return <div>Loading</div>;
+    return <Spinner />;
   }
 
   if (projects.isError) {
@@ -51,16 +52,15 @@ export function IssueList() {
       {items.length > 0 ? (
         <>
           <div className={styles.container}>
-            <table className={styles.table}>
-              <thead>
-                <tr className={styles.headerRow}>
-                  <th className={styles.headerCell}>Issue</th>
-                  <th className={styles.headerCell}>Level</th>
-                  <th className={styles.headerCell}>Events</th>
-                  <th className={styles.headerCell}>Users</th>
-                </tr>
-              </thead>
-              <tbody>
+            <div>
+              <div className={styles.table}>
+                <div className={styles.headerRow}>
+                  <div className={styles.headerCell}>Issue</div>
+                  <div className={styles.headerCell}>Graph: 14d</div>
+                  <div className={styles.headerCell}>Level</div>
+                  <div className={styles.headerCell}>Events</div>
+                  <div className={styles.headerCell}>Users</div>
+                </div>
                 {(items || []).map((issue) => (
                   <IssueRow
                     key={issue.id}
@@ -68,8 +68,8 @@ export function IssueList() {
                     projectLanguage={projectIdToLanguage[issue.projectId]}
                   />
                 ))}
-              </tbody>
-            </table>
+              </div>
+            </div>
             <div className={styles.paginationContainer}>
               <div>
                 <button
