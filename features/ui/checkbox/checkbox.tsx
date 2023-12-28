@@ -8,7 +8,7 @@ export enum CheckboxSize {
 }
 
 type CheckboxProps = {
-  value: string;
+  value?: string;
   size?: CheckboxSize;
   isDisabled?: boolean;
 };

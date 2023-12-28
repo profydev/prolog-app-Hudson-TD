@@ -76,14 +76,6 @@
 .container {
   display: flex;
   align-items: center;
-
-  &.sm {
-    gap: space.$s2;
-  }
-
-  &.md {
-    gap: space.$s3;
-  }
 }
 
 .label {
