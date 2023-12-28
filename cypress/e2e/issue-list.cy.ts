@@ -40,13 +40,12 @@ describe("Issue List", () => {
 
   context("desktop resolution", () => {
     beforeEach(() => {
-      cy.viewport(1025, 900);
+      cy.viewport(1440, 1080);
     });
 
-    it.only("renders the issues", () => {
+    it("renders the issues", () => {
       cy.get("main")
-        .find("tbody")
-        .find("tr")
+        .get('[data-cy="table"]')
         .each(($el, index) => {
           const issue = mockIssues1.items[index];
           const firstLineOfStackTrace = issue.stack.split("\n")[1].trim();
@@ -66,19 +65,19 @@ describe("Issue List", () => {
       cy.get("@next-button").click();
       cy.get("@prev-button").should("not.have.attr", "disabled");
       cy.contains("Page 2 of 3");
-      cy.get("tbody tr:first").contains(mockIssues2.items[0].message);
+      cy.get('[data-cy="table"]:first').contains(mockIssues2.items[0].message);
 
       // test navigation to third and last page
       cy.get("@next-button").click();
       cy.get("@next-button").should("have.attr", "disabled");
       cy.contains("Page 3 of 3");
-      cy.get("tbody tr:first").contains(mockIssues3.items[0].message);
+      cy.get('[data-cy="table"]:first').contains(mockIssues3.items[0].message);
 
       // test navigation back to second page
       cy.get("@prev-button").click();
       cy.get("@next-button").should("not.have.attr", "disabled");
       cy.contains("Page 2 of 3");
-      cy.get("tbody tr:first").contains(mockIssues2.items[0].message);
+      cy.get('[data-cy="table"]:first').contains(mockIssues2.items[0].message);
     });
 
     it("persists page after reload", () => {
@@ -91,12 +90,11 @@ describe("Issue List", () => {
       cy.contains("Page 2 of 3");
     });
 
-    it.only("reflects correct values in Users column", () => {
+    it("reflects correct values in Users column", () => {
       // Verify page 1 Users column values
       cy.contains("Page 1 of 3");
       cy.get("main")
-        .find("tbody")
-        .find("tr")
+        .get('[data-cy="table"]')
         .each(($el, index) => {
           const issue = mockIssues1.items[index];
           cy.wrap($el).contains(issue.numUsers);
@@ -109,8 +107,7 @@ describe("Issue List", () => {
       cy.contains("Page 2 of 3");
       // Verify page 2 Users column values
       cy.get("main")
-        .find("tbody")
-        .find("tr")
+        .get('[data-cy="table"]')
         .each(($el, index) => {
           const issue = mockIssues2.items[index];
           cy.wrap($el).contains(issue.numUsers);

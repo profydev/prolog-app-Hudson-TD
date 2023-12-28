@@ -53,7 +53,7 @@ export function IssueList() {
         <>
           <div className={styles.container}>
             <div>
-              <div className={styles.table}>
+              <div className={styles.table} data-cy="table">
                 <div className={styles.headerRow}>
                   <div className={styles.headerCell}>Issue</div>
                   <div className={styles.headerCell}>Graph: 14d</div>
